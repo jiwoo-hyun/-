@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>발라드 - 이소라</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Noto Sans KR', sans-serif;
+      background-color: #F4F2FF;
+    }
+
+    .scroll-container {
+      width: 1512px; /* 고정 너비 */
+      height: 900px; /* 고정 높이 */
+      margin: 0 auto;
+      display: flex;
+      flex-direction: row;
+      position: relative;
+      border-left: 1px solid black;
+      border-right: 1px solid black;
+    }
+
+    .section {
+      padding: 40px;
+      box-sizing: border-box;
+      min-height: 100%;
+    }
+
+    .left {
+    width: 300px;
+    position: sticky;
+    top: 0;
+    left: 0;
+    border-right: 1px solid black;
+    background-color: #F4F2FF; /* 배경색을 추가하여 스크롤 시 보이지 않게 처리 */
+    }
+
+    .center {
+      flex-grow: 1;
+      position: sticky;
+      z-index: 1;
+      border-right: 1px solid black;
+      overflow-y: auto;}
+
+    .right {
+    width: 160px;
+    position: sticky;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding-top: 40px;
+    background-color: #F4F2FF; /* 배경색을 추가하여 스크롤 시 보이지 않게 처리 */
+    z-index: 2;
+    }
+
+    .album-cover {
+      width: 220px;
+      height: 220px;
+      border-radius: 16px;
+      object-fit: cover;
+    }
+
+    .info-title {
+      font-weight: 900;
+      font-size: 18px;
+    }
+
+    .info-subtitle {
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+
+    .info-pair {
+      display: flex;
+      justify-content: space-between;
+      font-size: 16px;
+      font-weight: bold;
+      margin-top: 12px;
+    }
+
+    .credit {
+      font-size: 11px;
+      margin-top: 16px;
+    }
+
+    .lyrics-row {
+      display: flex;
+      gap: 1px;
+    }
+
+    .lyrics-left, .lyrics-right {
+        width: 50%;
+        font-size: 13px;
+        line-height: 1.65;
+        white-space: pre-wrap;
+    }
+
+    .lyrics-right {
+    width: 50%;
+    font-size: 13px;
+    line-height: 1.65;
+    white-space: pre-wrap;
+    margin-left: -40px; /* 왼쪽으로 확 밀기 */
+    }
+
+    .lyrics {
+      font-size: 13px;
+      line-height: 1.65;
+      padding: 10px 0 10px 40px;
+    }
+
+    details {
+      border-top: 1px solid black;
+      padding: 10px 0;
+      cursor: pointer;
+    }
+
+    summary {
+      font-size: 16px;
+      font-weight: 500;
+      outline: none;
+    }
+
+    .clock {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      font-size: 20px;
+      background: #F4F2FF;
+      padding: 4px 8px;
+      z-index: 1000;
+    }
+
+    .recommendation {
+      width: 100px;
+      height: 100px;
+      border: 1px solid black;
+      object-fit: cover;
+    }
+
+    button {
+  background-color: #b1c2d3; /* 연한 회색 배경 */
+  color: #ffffff; /* 글자 색 */
+  border: none; /* 테두리 제거 */
+  border-radius: 12px; /* 둥근 테두리 */
+  padding: 10px 16px;
+  font-size: 13px;
+  font-family: 'Noto Sans KR', sans-serif;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* 살짝 그림자 */
+}
+
+button:hover {
+  background-color: #e0e0e0; /* 살짝 더 진해짐 */
+  transform: translateY(-1px); /* 눌리는 느낌 */
+}
+
+button:active {
+  background-color: #d0d0d0; /* 눌렀을 때 색 */
+  transform: translateY(0); /* 눌림 효과 */
+}
+  </style>
+</head>
+<body>
+  <div class="scroll-container">
+    <div class="section left">
+      <div class="info-title">발라드</div>
+      <div class="info-subtitle">Ballad</div>
+      <img class="album-cover" src="https://i.postimg.cc/MTWB5f2c/temp-Image-IYJ7-Ty.avif" alt="Album Cover">
+      <div class="info-pair">
+        <div>바람이 분다</div>
+        <div>이소라</div>
+      </div>
+      <div class="credit">
+        Released<br>2004.12.10<br><br>
+        Composed by 이승환(The Story)<br>
+        Lyrics by 이소라<br>
+        Arranged by 이승환(The Story), 이병준
+      </div>
+    </div>
+
+    <div class="section center">
+      <div class="lyrics-row">
+        <div class="lyrics-left">
+          바람이 분다 서러운 마음에
+          텅 빈 풍경이 불어온다<br>
+          머리를 자르고 돌아오는 길에
+          내내 글썽이던 눈물을 쏟는다<br>
+          하늘이 젖는다
+          어두운 거리에
+          찬 빗방울이 떨어진다
+          무리를 지으며 따라오는 비는
+          내게서 먼 것 같아 이미 그친 것 같아<br>
+          세상은 어제와 같고 
+          시간은 흐르고 있고
+          나만 혼자 이렇게 달라져 있다<br>
+          바람에 흩어져버린 
+          허무한 내 소원들은 애타게 사라져간다
+
+      
+          
+
+          <p></p>
+
+        </div>
+        <div class="lyrics-right">
+          바람이 분다 시린 향기 속에
+          지난 시간을 되돌린다<br>
+          여름 끝에 선 너의 뒷모습이
+          차가웠던 것 같아 다 알 것 같아<br>
+          내게는 소중했던 잠 못 이루던 날들이
+          너에겐 지금과 다르지 않았다<br>
+          사랑은 비극이어라 그대는 내가 아니다
+          추억은 다르게 적힌다<br>
+          나의 이별은
+          잘 가라는 인사도 없이
+          치러진다<br>
+          세상은 어제와 같고 시간은 흐르고 있고
+          나만 혼자 이렇게 달라져 있다
+          내게는 천금 같았던 추억이 담겨져 있던
+          머리 위로 바람이 분다<br>
+          눈물이 흐른다<br><br>
+          
+        </div>
+      </div>
+
+      <details>
+        <summary>음악 감상</summary>
+<div class="lyrics">
+  <iframe width="560" height="315" 
+    src="https://www.youtube.com/embed/pv6qFKM5y_A?si=jVtAOEiaN_huXREN" 
+    title="YouTube video player" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    allowfullscreen>
+  </iframe>
+</div>
+
+      </details>
+      <details>
+        <summary>노래 해석</summary>
+        <div class="lyrics">
+            '이소라의 6집 앨범 "눈썹달"에 수록된 곡.<br>
+
+            작곡은 The Story의 이승환.<br>작사는 이소라 본인.<br><br>
+            
+            서정적인 가사와 여성적인 감수성이 돋보이는 곡으로 2005년 작 영화 <여자,정혜>의 영상으로 뮤직비디오가 만들어지기도 했다.<br> 가사를 들어보면 실연 당한 여인의 깊은 슬픔이 느껴지며, 이 노래 덕분에 이소라 본인 자체는 몰라도 이 노래만큼은 좋다고 하는 여성들이 많다고 한다.<br>
+            
+            여담으로 이 곡이 원래 이 앨범의 타이틀 곡은 아니었고, 후속곡으로 선보인 노래다. '바람이 분다'는 지나치게 처연하고 우울한 탓에, 조금 더 대중적인 코드의 발라드 곡인 '이제 그만'이 타이틀곡으로 낙점. 다만 대중들이 그녀에게 기대하는 음악이 그게 아니었던 탓인지, 타이틀 곡보다 훨씬 더 큰 사랑을 받고 널리 알려진 명곡이 되었다.<br>
+            <span style="color: #439ADA;">
+            <br>
+        
+        </div>
+      </details>
+      <details>
+        <summary>이소라 알아보기</summary>
+        <br>
+        <img src="https://i.postimg.cc/Kj2ndpMY/temp-Image-HIE2-FJ.avif" alt="이소라 이미지" width="200" style="border-radius: 0px; margin-left: 40px; margin-bottom: 10px;">
+        <div class="lyrics">이소라는 감성적인 목소리와 깊은 감정 표현으로 사랑받는 대한민국의 싱어송라이터이자 방송인이다.<br> 1990년대 초반 그룹 '낯선 사람들'로 데뷔한 후 솔로로 전향해 많은 명곡을 남겼으며, 대표곡으로는 「제발」, 「바람이 분다」, 「신청곡」 등이 있다.<br> 섬세한 감정선과 독보적인 음악 스타일로 한국 발라드의 대표 주자로 평가받는다.</div>
+      </details>
+      <details>
+        <summary>스케치북</summary>
+        <div class="lyrics">자기만의 감상을 그림으로 표현한 후, 캡처해서 저장해요!</div>
+        
+        <!-- 펜 색상 선택 -->
+        <div>
+          <label for="penColor">펜 색상: </label>
+          <input type="color" id="penColor" value="#000000">
+        </div>
+      
+        <!-- 펜 굵기 선택 -->
+        <div>
+          <label for="penWidth">펜 굵기: </label>
+          <input type="range" id="penWidth" min="1" max="10" value="3">
+        </div>
+      
+        <!-- 지우개 버튼 -->
+        <div>
+          <button id="eraserButton" style="padding: 6px 12px; font-size: 14px; border-radius: 6px;">지우개</button>
+        </div>
+        
+        <!-- 캔버스 크기 -->
+        <canvas id="sketchCanvas" width="600" height="400" style="border: 1px solid black; display: block; margin-top: 10px;"></canvas>
+        <br>
+        
+        <button id="saveButton" style="padding: 6px 12px; font-size: 14px; border-radius: 6px;">그림 저장</button>
+      </details>
+    
+      <div style="width: 100%; display: flex; justify-content: center; padding: 40px 0;">
+        <div style="width: 912px; border-top: 1px solid black; padding-top: 20px;">
+          <h3 style="margin-bottom: 10px;">댓글 (<span id="comment-count">0</span>)</h3>
+          <div id="comment-list" style="margin-bottom: 20px;"></div>
+          <textarea id="comment-input" placeholder="댓글을 입력하세요"
+            style="width: 100%; height: 60px; padding: 8px; font-size: 14px; border-radius: 6px; border: 1px solid #ccc;"></textarea>
+          <button onclick="addComment()"
+            style="margin-top: 8px; padding: 6px 12px; font-size: 14px; border-radius: 6px;">댓글 등록</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="section right">
+      <img class="recommendation" src="https://i.postimg.cc/TPQ1RkFw/temp-Imagech-Mv-LK.avif" alt="추천 1">
+      <img class="recommendation" src="https://i.postimg.cc/Dysq2Tgw/temp-Image-Vr-SJqr.avif" alt="추천 2">
+      <img class="recommendation" src="https://i.postimg.cc/6pfnvfFs/temp-Image3s-M2-OX.avif" alt="추천 3">
+    </div>
+  </div>
+
+  <div class="clock" id="clock">00:00</div>
+
+  <script>
+    function updateClock() {
+      const now = new Date();
+      let hours = now.getHours();
+      const minutes = now.getMinutes();
+      const seconds = now.getSeconds();
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+      hours = hours % 12 || 12;
+      const padded = n => n.toString().padStart(2, '0');
+      document.getElementById("clock").textContent = `${padded(hours)}:${padded(minutes)}:${padded(seconds)} ${ampm}`;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+  
+  </script>
+
+<script>
+    // 캔버스와 그리기 컨텍스트 가져오기
+    const canvas = document.getElementById('sketchCanvas');
+    const ctx = canvas.getContext('2d');
+  
+    // 초기 펜 색상과 굵기 설정
+    let penColor = document.getElementById('penColor').value;
+    let penWidth = document.getElementById('penWidth').value;
+    let drawing = false;
+    let lastX = 0;
+    let lastY = 0;
+    let erasing = false;  // 지우개 기능 활성화 여부
+  
+    // 펜 색상 선택 시 색상 변경
+    document.getElementById('penColor').addEventListener('input', (e) => {
+      penColor = e.target.value;
+    });
+  
+    // 펜 굵기 선택 시 굵기 변경
+    document.getElementById('penWidth').addEventListener('input', (e) => {
+      penWidth = e.target.value;
+    });
+  
+    // 지우개 버튼 클릭 시 지우개 기능 활성화/비활성화
+    document.getElementById('eraserButton').addEventListener('click', () => {
+      erasing = !erasing;  // 지우개 상태 토글
+      if (erasing) {
+        document.getElementById('eraserButton').style.backgroundColor = '#f00';  // 지우개 활성화 시 빨간색
+      } else {
+        document.getElementById('eraserButton').style.backgroundColor = '';  // 지우개 비활성화 시 원래 색상
+      }
+    });
+  
+    // 마우스를 누르면 그리기 시작
+    canvas.addEventListener('mousedown', (e) => {
+      drawing = true;
+      lastX = e.offsetX;
+      lastY = e.offsetY;
+    });
+  
+    // 마우스를 떼거나 캔버스에서 벗어나면 그리기 종료
+    canvas.addEventListener('mouseup', () => {
+      drawing = false;
+    });
+    canvas.addEventListener('mouseout', () => {
+      drawing = false;
+    });
+  
+    // 마우스를 움직일 때 그리기 또는 지우기
+    canvas.addEventListener('mousemove', (e) => {
+      if (drawing) {
+        const currentX = e.offsetX;
+        const currentY = e.offsetY;
+        ctx.beginPath();
+        ctx.moveTo(lastX, lastY);
+        
+        // 펜으로 그릴 때
+        if (!erasing) {
+          ctx.strokeStyle = penColor;
+          ctx.lineWidth = penWidth;
+          ctx.lineTo(currentX, currentY);
+          ctx.stroke();
+        }
+        // 지우개로 지울 때
+        else {
+          ctx.clearRect(currentX - penWidth / 2, currentY - penWidth / 2, penWidth, penWidth);
+        }
+  
+        lastX = currentX;
+        lastY = currentY;
+      }
+    });
+  
+    // 그림을 PNG 형식으로 저장하기
+    document.getElementById('saveButton').addEventListener('click', () => {
+      const imageData = canvas.toDataURL('image/png');
+      const link = document.createElement('a');
+      link.href = imageData;
+      link.download = 'sketch.png';  // 파일 이름
+      link.click();
+    });
+  </script>
+
+  <script>
+    function updateClock() {
+      const now = new Date();
+      let hours = now.getHours();
+      const minutes = now.getMinutes();
+      const seconds = now.getSeconds();
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+      hours = hours % 12 || 12;
+      const padded = n => n.toString().padStart(2, '0');
+      document.getElementById("clock").textContent = `${padded(hours)}:${padded(minutes)}:${padded(seconds)} ${ampm}`;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+  
+    // 댓글 기능
+    let comments = JSON.parse(localStorage.getItem('comments') || '[]');
+  
+    function renderComments() {
+      const list = document.getElementById('comment-list');
+      const count = document.getElementById('comment-count');
+      list.innerHTML = '';
+      comments.forEach((c, i) => {
+        const p = document.createElement('p');
+        p.textContent = c;
+        list.appendChild(p);
+      });
+      count.textContent = comments.length;
+    }
+  
+    function addComment() {
+      const input = document.getElementById('comment-input');
+      const text = input.value.trim();
+      if (text) {
+        comments.push(text);
+        localStorage.setItem('comments', JSON.stringify(comments));
+        input.value = '';
+        renderComments();
+      }
+    }
+  
+    renderComments();
+  </script>
+
+</body>
+</html>

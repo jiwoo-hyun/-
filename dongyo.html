@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>10:00-13:00 - 동요</title>
+  <link href="https://cdn.jsdelivr.net/npm/pretendard@1.3.6/dist/web/static/pretendard.css" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+      background-color: #fff7da;
+      
+    }
+    
+    .container {
+      width: 1512px; /* 고정 너비 */
+      height: 900px; /* 고정 높이 */
+      margin: 0 auto;
+      display: flex;
+      flex-direction: row;
+      position: relative;
+      border-left: 1px solid black;
+      border-right: 1px solid black;
+    }
+
+    .section {
+      padding: 40px;
+      box-sizing: border-box;
+      min-height: 100%;
+    }
+
+    .left {
+    width: 300px;
+    position: sticky;
+    top: 0;
+    left: 0;
+    border-right: 1px solid black;
+    background-color: #fff7da; /* 배경색을 추가하여 스크롤 시 보이지 않게 처리 */
+    }
+
+    .center {
+      flex-grow: 1;
+      position: relative;
+      z-index: 1;
+      border-right: 1px solid black;
+    }
+
+    .right {
+    width: 160px;
+    position: sticky;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding-top: 40px;
+    background-color: #fff7da; /* 배경색을 추가하여 스크롤 시 보이지 않게 처리 */
+    z-index: 2;
+    }
+  
+
+    .left {
+      width: 300px;
+      flex-shrink: 0;
+      
+      border-right: 1px solid black;
+      height:100%
+     
+    }
+
+    .center {
+      flex-grow: 1;
+      position: relative;
+      height: 100%;
+      border-right: 1px solid black;
+      overflow-y: auto;
+      z-index: 1;
+    } 
+
+    .album-cover {
+      width: 220px;
+      height: 220px;
+      border-radius: 16px;
+      object-fit: cover;
+      margin: 20px 0;
+      border: none;
+    }
+
+    .info-title {
+      font-weight: 900;
+      font-size: 20px;
+    }
+
+    .info-subtitle {
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    .info-pair {
+      display: flex;
+      justify-content: space-between;
+      font-size: 16px;
+      font-weight: bold;
+      margin-top: 12px;
+    }
+
+    .credit {
+      font-size: 13px;
+      margin-top: 20px;
+      line-height: 1.6;
+    }
+
+    .lyrics-row {
+      display: flex;
+      gap: 40px;
+      
+    }
+
+    .lyrics-left, .lyrics-right {
+      width: 50%;
+      font-size: 18px;
+      line-height: 1.9;
+      white-space: pre-wrap;
+    font-weight: 600;
+    }
+    .regular {
+  font-weight: 400; /* (당근)처럼 얇게 보이고 싶은 부분 */
+}
+
+    details {
+      border-top: 1px solid black;
+      padding: 12px 0;
+      cursor: pointer;
+    }
+
+    summary {
+      font-size: 15px;
+      font-weight: 500;
+      outline: none;
+    }
+
+    .lyrics {
+      font-size: 14px;
+      line-height: 1.8;
+      padding: 10px 0 0 20px;
+    }
+
+    .recommendation {
+      width: 100px;
+      height: 100px;
+      border: none;
+      object-fit: cover;
+    }
+
+    .clock {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      font-size: 16px;
+      background: white;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+    .lyrics-box {
+  padding: 16px 20px;
+  font-family: 'pretendard','Noto Sans KR', sans-serif;
+  font-size: 14px;
+  line-height: 1.8;
+  color: #222;
+font-weight: 500;
+
+}
+
+.lyrics-box p {
+  margin: 0 0 10px;
+}
+
+.lyrics-box .highlight {
+  color: rgba(0, 0, 0, 0.7);
+  font-weight: 700;
+  margin-top: 20px;
+}
+.lyrics-explain-box {
+  width: 386px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 14px;
+  color: #000;
+  line-height: 1.8;
+  padding: 16px 20px;
+}
+
+.lyrics-explain-box p {
+  margin-bottom: 16px;
+  word-break: keep-all;
+}
+
+.lyrics-explain-box .keyword {
+  font-weight: 600;
+  font-size: 14.5px;
+  line-height: 1.6;
+  display: inline-block;
+  margin-bottom: 4px;
+}
+.sketchbook {
+  margin-top: 5px;
+}
+
+#drawingCanvas {
+  border: 1px solid #ccc;
+  background-color: #fff;
+  cursor: crosshair;
+}
+
+.controls {
+  margin-top: 5px;
+}
+.comment-section {
+  margin-top: 20px;
+}
+
+#commentInput {
+  width: 80%;
+  padding: 5px;
+  margin-right: 5px;
+}
+
+#commentList {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+}
+
+#commentList li {
+  background-color: #f3f3f3;
+  margin-bottom: 5px;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+  .comment-section h4 {
+    margin-bottom: 10px;
+    font-size: 15px;
+    color: #3b322e;
+  }
+
+  #commentInput {
+    width: 70%;
+    padding: 8px 10px;
+    margin-right: 8px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+
+  .comment-section button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 8px;
+    background-color: #ffd18c;
+    color: #333;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  .comment-section button:hover {
+    background-color: #ffb74d;
+  }
+
+  #commentList {
+    list-style: none;
+    padding: 0;
+    margin-top: 15px;
+  }
+
+  #commentList li {
+    background-color: #fff7e0;
+    border: 1px solid #f5d6a4;
+    border-radius: 10px;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+  }
+
+  .comment-actions button {
+    background: none;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+    margin-left: 8px;
+    transition: transform 0.2s ease;
+  }
+
+  .comment-actions button:hover {
+    transform: scale(1.2);
+  }
+
+  .clicked {
+    color: red;
+  }
+</style>
+
+</head>
+<body>
+  <div class="container">
+    <!-- 왼쪽 정보 영역 -->
+    <div class="section left">
+      <div class="info-title">한국동요</div>
+      <div class="info-subtitle">ChillerChildren’s Song</div>
+      <img class="album-cover" src="https://i.postimg.cc/RVkFPx1w/temp-Image-Ur-Nva-J.avif" alt="Album Cover" />
+      <div class="info-pair">
+        <div>당근송</div>
+        <div>핑크퐁</div>
+      </div>
+      <div class="credit">
+        발매일 2007년 9월 19일<br/>
+        작곡 김희빈<br/>
+        작사  조재윤
+      </div>
+    </div>
+
+    <!-- 가운데 가사 영역 -->
+    <div class="section center">
+      <div class="lyrics-row">
+        <div class="lyrics-left"><br>
+          <span class="regular">  (아 아 아  당근쏭)</span><br>
+          나 보고싶니 <span class="regular">(당근)</span> 나 생각나니 <span class="regular">(당근)</span><br>
+          I love you You love me <span class="regular">(당근당근당근)</span><br><br>
+
+          나 좋아하니 <span class="regular">(당근)</span> 나 사랑하니 <span class="regular">(당근)</span><br>
+          I love you You love me<span class="regular">(당근당근당근)</span><br><br>
+
+          너 변하지마 <span class="regular">(당근)</span> 언제까지나 <span class="regular">(당근)</span><br>
+          좋아해 좋아해 <span class="regular">(당근당근당근)</span><br><br>
+
+       
+        </div>
+
+        <div class="lyrics-right"><br>
+          나 행복해요 <span class="regular">(당근)</span> 나 즐거워요 <span class="regular">(당근)</span><br>
+          사랑해 사랑해 <span class="regular">(당근쏭)</Span><br><br>
+          때로는 짜증나고 때로는 힘들어도<br>
+          너의 곁에 언제나 웃고 있는 날 생각해<br><br>
+
+          때로는 슬퍼지고 때로는 외로워도<br>
+          너의 곁에 언제나 함께 하는 나를 생각해<br>
+          <span class="regular">  (아 아 아 당근쏭)</span>
+        </div>
+      </div>
+
+      <!-- 가사 해석 -->
+      <details>
+        <summary>음악감상</summary>
+        <div class="lyrics"><iframe width="560" height="315" src="https://www.youtube.com/embed/Ffos7OAZ0_0?si=_tuNk3w5km9WtlRH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </details>
+      <details>
+        <summary>가사 해석</summary>
+        <div class="lyrics-box">
+          <p><strong>&lt;당근송&gt;</strong>은 반복적인 리듬과 따뜻한 메시지를 담은 어린이 동요로, <strong>‘당근’</strong>이라는 단어를 통해 사랑과 우정을 귀엽게 표현한 노래입니다.</p>
+      
+          <p class="highlight">"나 보고싶니 (당근)", "나 생각나니 (당근)"</p>
+          <p>누군가를 그리워하고, 사랑하는 감정을 솔직하게 표현해요. 아이들이 감정을 자연스럽게 말할 수 있도록 도와줘요.</p>
+      
+          <p class="highlight">"나 좋아하니 (당근), 나 사랑하니 (당근)"</p>
+          <p>애정 표현을 재미있는 질문과 대답 형식으로 반복해서, 긍정적인 마음을 키워줘요.</p>
+      
+          <p class="highlight">"너 변하지마 (당근), 언제까지나 (당근)"</p>
+          <p>친구 관계의 지속성과 신뢰에 대한 이야기를 담고 있어요. 아이들에게 오래 함께하고 싶은 마음을 표현하는 법을 알려줘요.</p>
+      
+          <p class="highlight">"때로는 짜증나고 힘들어도" / "슬퍼지고 외로워도"</p>
+          <p>다양한 감정을 인정하고, 그 속에서도 친구와 함께라는 생각이 힘이 된다는 걸 말해줘요.</p>
+      
+          <p class="highlight">"너의 곁에 언제나 함께 하는 나를 생각해"</p>
+          <p>언제나 네 곁에 있을게, 라는 위로와 다정함이 담겨 있어요.</p>
+      
+          <p class="highlight">“언제나 너를 사랑하고, 함께할게.”</p>
+          <p>귀여운 당근처럼 작고 사소한 말도, 마음을 담으면 누군가에게 큰 힘이 될 수 있다는 걸 알려주는 노래예요.</p>
+        </div>
+      </details>
+      
+      <details>
+        <summary>단어장</summary>
+        <div class="lyrics-explain-box">
+            <span class="keyword">당근</span><br>‘당근’은 실제로는 채소지만, 여기선 ‘당연하지!’를 귀엽게 표현한 언어유희예요.</p>
+            <p>아이들이 쉽게 따라하고 말장난처럼 즐기면서도, 따뜻한 감정을 자연스럽게 배울 수 있어요.</p>
+            <p><span class="keyword">곁</span><br>어떤 사람이나 사물의 바로 옆이나 가까운 자리.</p>
+            <p><span class="keyword">보고 싶다</span><br>어떤 사람의 얼굴이나 모습을 다시 만나고 싶어 하는 마음을 나타냄.</p>
+            <p><span class="keyword">함께하다</span><br>같이 시간을 보내거나 같은 일을 하다.</p>
+          </div>
+        </details>
+      <details>
+        <summary>스케치북</summary>
+            <div class="lyrics-explain-box">
+                자유롭게 그림을 그리고, 캡쳐해서 저장해요!
+            </div>
+            <div class="sketchbook">
+              <canvas id="drawingCanvas" width="700" height="400"></canvas>
+              <div class="controls">
+                <button onclick="clearCanvas()">지우기</button>
+              </div>
+            </div>
+            <script>
+                const canvas = document.getElementById('drawingCanvas');
+                const ctx = canvas.getContext('2d');
+                let painting = false;
+              
+                function startPosition(e) {
+                  painting = true;
+                  draw(e);
+                }
+              
+                function endPosition() {
+                  painting = false;
+                  ctx.beginPath();
+                }
+              
+                function draw(e) {
+                  if (!painting) return;
+              
+                  const rect = canvas.getBoundingClientRect();
+                  ctx.lineWidth = 2;
+                  ctx.lineCap = 'round';
+                  ctx.strokeStyle = 'black';
+              
+                  ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
+                  ctx.stroke();
+                  ctx.beginPath();
+                  ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
+                }
+              
+                function clearCanvas() {
+                  ctx.clearRect(0, 0, canvas.width, canvas.height);
+                }
+              
+                canvas.addEventListener('mousedown', startPosition);
+                canvas.addEventListener('mouseup', endPosition);
+                canvas.addEventListener('mousemove', draw);
+                canvas.addEventListener('mouseleave', endPosition);
+              </script>
+              
+          </details>
+          
+      </details>
+      <details>
+        <summary>오늘 나에게 한 마디</summary>
+        <div class="lyrics-explain-box">
+          노래를 듣고 나에게 해주고 싶은 한 마디를 적어주세요.
+        </div>
+        <div class="comment-section">
+          <h4>한 마디</h4>
+          <input type="text" id="commentInput" placeholder="댓글을 입력하세요" />
+          <button onclick="addComment()">등록</button>
+          <ul id="commentList"></ul>
+        </div>
+        </details>
+        
+        <script>
+          // 댓글 등록
+          function addComment() {
+            const input = document.getElementById('commentInput');
+            const comment = input.value.trim();
+        
+            if (comment !== "") {
+              const li = document.createElement('li');
+              const textSpan = document.createElement('span');
+              textSpan.textContent = comment;
+        
+              const actions = document.createElement('div');
+              actions.className = "comment-actions";
+        
+              // ❤️ 이모지
+              const emojiBtn = document.createElement('button');
+              emojiBtn.innerHTML = "❤️";
+              emojiBtn.onclick = () => {
+                emojiBtn.classList.toggle("clicked");
+                emojiBtn.innerHTML = emojiBtn.classList.contains("clicked") ? "❤️‍🔥" : "❤️";
+              };
+        
+              // 🗑️ 삭제 버튼
+              const deleteBtn = document.createElement('button');
+              deleteBtn.innerHTML = "🗑️";
+              deleteBtn.onclick = () => {
+                li.remove();
+              };
+        
+              actions.appendChild(emojiBtn);
+              actions.appendChild(deleteBtn);
+        
+              li.appendChild(textSpan);
+              li.appendChild(actions);
+              document.getElementById('commentList').appendChild(li);
+        
+              input.value = "";
+            }
+          }
+        </script>
+        
+      </details>
+    </div>
+
+    <!-- 오른쪽 추천 영역 -->
+    <div class="section right">
+      <a href="https://www.youtube.com/watch?v=L6_y2KvGNts" target="_blank">
+        <img class="recommendation" src="https://i.postimg.cc/02MjdyS8/temp-Image-SMIu-Vo.avif" alt="추천 1" />
+      </a>
+      <a href="https://www.youtube.com/watch?v=5i-GDvqldc8" target="_blank">
+        <img class="recommendation" src="https://i.postimg.cc/bYFdttsC/temp-Image-RGrdcn.avif" alt="추천 2" />
+      </a>
+      <a href="https://www.youtube.com/watch?v=tIRul7vW_b0" target="_blank">
+        <img class="recommendation" src="https://i.postimg.cc/KzG4n7PV/temp-Imager-D9nd-T.avif" alt="추천 3" />
+      </a>
+    </div>
+    
+
+  <!-- 시계 -->
+  <div class="clock" id="clock">00:00</div>
+
+  <script>
+    function updateClock() {
+      const now = new Date();
+      let hours = now.getHours();
+      const minutes = now.getMinutes();
+      const seconds = now.getSeconds();
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+      hours = hours % 12 || 12;
+      const pad = n => n.toString().padStart(2, '0');
+      document.getElementById("clock").textContent = `${pad(hours)}:${pad(minutes)}:${pad(seconds)} ${ampm}`;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+  </script>
+</body>

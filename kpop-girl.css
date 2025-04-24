@@ -1,0 +1,146 @@
+
+body {
+    margin: 0;
+    font-family: 'Noto Sans KR', sans-serif;
+    background-image:url("https://i.postimg.cc/nzR277T0/bg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+  
+  .scroll-container {
+    width: 1512px; 
+    height: 900px; 
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+  }
+  
+  .section {
+    padding: 40px;
+    box-sizing: border-box;
+    min-height: 100%;
+  }
+  
+  .left {
+    width: 300px;
+    position: sticky;
+    top: 0;
+    left: 0;
+    border-right: 1px solid black;
+    
+    }
+  
+  
+  .center {
+    flex-grow: 1;
+      position: sticky;
+      z-index: 1;
+      border-right: 1px solid black;
+      overflow-y: auto;}
+
+
+   .right {
+    width: 160px;
+    position: sticky;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding-top: 40px;
+    z-index: 2;
+  }
+  
+  .album-cover {
+    width: 220px;
+    height: 220px;
+    border-radius: 16px;
+    object-fit: cover;
+  }
+  
+  .info-title {
+    font-weight: 900;
+    font-size: 18px;
+  }
+  
+  .info-subtitle {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+  
+  .info-pair {
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 12px;
+  }
+  
+  .credit {
+    font-size: 11px;
+    margin-top: 16px;
+  }
+  
+  .lyrics-row {
+    display: flex;
+    gap: 1px;
+  }
+  
+  .lyrics-left, .lyrics-right {
+    width: 50%;
+    font-size: 12.5px;
+    line-height: 1.55;
+    white-space: pre-wrap;
+  }
+  
+  .lyrics-right {
+    width: 50%;
+    font-size: 12.5px;
+    line-height: 1.55;
+    white-space: pre-wrap;
+    margin-left: -40px; 
+    }
+
+  .lyrics {
+    font-size: 13.5px;
+    line-height: 1.7;
+    padding: 10px 0 10px 40px;
+  }
+  
+  
+  details {
+    border-top: 1px solid black;
+    padding: 10px 0;
+    cursor: pointer;
+  }
+  
+  summary {
+    font-size: 16px;
+    font-weight: 500;
+    outline: none;
+  }
+  
+  .clock {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: px;
+    background: rgb(215, 242, 255);
+    padding: 4px 8px;
+    border-radius: 15px;
+    z-index: 1000;
+  }
+  
+  .recommendation {
+    width: 100px;
+    height: 100px;
+    border: 1px solid rgb(0, 0, 0);
+    object-fit: cover;
+  }
+  
