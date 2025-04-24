@@ -1,0 +1,225 @@
+body {
+      margin: 0;
+      font-family: 'Noto Sans KR', sans-serif;
+      background-color: white;
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><text y="20">💥</text></svg>'), auto;
+    }
+
+    .scroll-container {
+      width: 1512px; /* 고정 너비 */
+      height: 900px; /* 고정 높이 */
+      margin: 0 auto;
+      display: flex;
+      flex-direction: row;
+      position: relative;
+      overflow-y: auto;
+      border-left: 1px solid black;
+      border-right: 1px solid black;
+    }
+
+    .section {
+      padding: 40px;
+      box-sizing: border-box;
+      min-height: 100%;
+    }
+
+    .left {
+    width: 300px;
+    position: sticky;
+    top: 0;
+    left: 0;
+    border-right: 1px solid black;
+    background-color: white; /* 배경색을 추가하여 스크롤 시 보이지 않게 처리 */
+    }
+
+    .center {
+    position: relative;
+    flex-grow: 1;
+    z-index: 1;
+    overflow-y: auto;
+    }
+
+    .center::after {
+    content: '';
+    position: fixed; /* absolute → fixed */
+    top: 0;
+    right: calc(160px + 1px + ((100vw - 1512px) / 2)); /* 오른쪽 고정 요소와 간격 맞추기 */
+    width: 1px;
+    background-color: black;
+    height: 100vh; /* 전체 뷰포트 높이로 변경 */
+    z-index: 10;
+    }
+
+    .right {
+    width: 160px;
+    position: sticky;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding-top: 40px;
+    background-color: white; /* 배경색을 추가하여 스크롤 시 보이지 않게 처리 */
+    z-index: 2;
+    }
+
+    .album-cover {
+      width: 220px;
+      height: 220px;
+      border-radius: 16px;
+      object-fit: cover;
+    }
+
+    .info-title {
+      font-weight: 900;
+      font-size: 18px;
+      letter-spacing: 1.15em; /* 글자 간격 추가 */
+      font-family: 'Warhaven OTF', 'Noto Sans KR', '나눔고딕', 'Malgun Gothic', sans-serif;
+    }
+
+    .info-subtitle {
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 16px;
+      font-family: 'DNF Forged Blade', 'Arial', 'Helvetica', sans-serif;
+    }
+
+    .info-pair {
+      display: flex;
+      justify-content: space-between;
+      font-size: 16px;
+      font-weight: bold;
+      margin-top: 12px;
+      font-family: 'Warhaven OTF', 'Noto Sans KR', '나눔고딕', 'Malgun Gothic', sans-serif;
+    }
+
+    .credit {
+      font-size: 11px;
+      margin-top: 16px;
+    }
+
+    .lyrics-row {
+      display: flex;
+      gap: 1px;
+    }
+
+    .lyrics-left, .lyrics-right {
+        width: 50%;
+        font-size: 13px;
+        line-height: 1.65;
+        white-space: pre-wrap;
+    }
+
+    .lyrics-right {
+    width: 50%;
+    font-size: 13px;
+    line-height: 1.65;
+    white-space: pre-wrap;
+    margin-left: -40px; /* 왼쪽으로 확 밀기 */
+    }
+
+    .lyrics {
+      font-size: 13px;
+      line-height: 1.9;
+      padding: 10px 0 10px 40px;
+    }
+
+    details {
+      border-top: 1px solid black;
+      padding: 10px 0;
+      cursor: pointer;
+    }
+
+    summary {
+      font-size: 16px;
+      font-weight: 500;
+      outline: none;
+    }
+
+    .clock {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      font-size: 20px;
+      background: white;
+      padding: 4px 8px;
+      z-index: 1000;
+    }
+
+    .recommendation {
+      width: 100px;
+      height: 100px;
+      border: 1px solid black;
+      object-fit: cover;
+    }
+
+    button {
+  background-color: #98c0e4; /* 연한 회색 배경 */
+  color: #ffffff; /* 글자 색 */
+  border: none; /* 테두리 제거 */
+  border-radius: 12px; /* 둥근 테두리 */
+  padding: 10px 16px;
+  font-size: 13px;
+  font-family: 'Noto Sans KR', sans-serif;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* 살짝 그림자 */
+}
+
+button:hover {
+  background-color: #e0e0e0; /* 살짝 더 진해짐 */
+  transform: translateY(-1px); /* 눌리는 느낌 */
+}
+
+button:active {
+  background-color: #d0d0d0; /* 눌렀을 때 색 */
+  transform: translateY(0); /* 눌림 효과 */
+}
+
+#menuButton {
+  background-color: #98c0e4;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-family: 'Noto Sans KR', sans-serif;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+#menuButton:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-1px);
+}
+
+#menuButton:active {
+  background-color: #d0d0d0;
+  transform: translateY(0);
+}
+
+.recommended-songs {
+  display: flex;
+  justify-content: space-between;
+  gap: 7px;
+  margin: 20px 0;
+  margin-left: -10px;
+}
+
+.recommended-song {
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.recommended-song img {
+  width: 120%;
+  height: 120%;
+  object-fit: cover;
+}
