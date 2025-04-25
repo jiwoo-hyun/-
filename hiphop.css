@@ -107,16 +107,17 @@ body {
     .lyrics-left, .lyrics-right {
         width: 50%;
         font-size: 13px;
-        line-height: 1.65;
+        line-height: 1.7;
         white-space: pre-wrap;
+        margin-left: 50px; /* 오른쪽으로 이동 */
     }
 
     .lyrics-right {
     width: 50%;
     font-size: 13px;
-    line-height: 1.65;
+    line-height: 1.7;
     white-space: pre-wrap;
-    margin-left: -40px; /* 왼쪽으로 확 밀기 */
+    margin-left: 10px; /* 오른쪽으로 이동 */
     }
 
     .lyrics {
@@ -210,16 +211,35 @@ button:active {
 
 .recommended-song {
   width: 100px;
-  height: 100px;
-  border: 1px solid black;
-  overflow: hidden;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  gap: 10px;
 }
 
 .recommended-song img {
-  width: 120%;
-  height: 120%;
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
   object-fit: cover;
+}
+
+.song-description {
+  width: 100%;
+  padding: 3px;
+  background-color: white;
+}
+
+.song-description p {
+  font-size: 12px;
+  line-height: 1.4;
+  text-align: center;
+  margin: 0;
+  word-break: keep-all;
+  word-wrap: break-word;
+}
+
+.song-description p span {
+  display: block;
+  margin-bottom: 3px;
 }
