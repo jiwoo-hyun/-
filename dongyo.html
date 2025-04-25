@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>10-13: 동요</title>
   <link href="https://cdn.jsdelivr.net/npm/pretendard@1.3.6/dist/web/static/pretendard.css" rel="stylesheet">
-
+  <link href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css" rel="stylesheet">
   <style>
     body {
       margin: 0;
@@ -172,7 +172,8 @@
   font-size: 14px;
   line-height: 1.8;
   color: #222;
-font-weight: 500;
+  font-weight: 500;
+      word-wrap: break-word;
 
 }
 
@@ -186,7 +187,7 @@ font-weight: 500;
   margin-top: 20px;
 }
 .lyrics-explain-box {
-  width: 386px;
+  width: 600px;
   font-family: 'Noto Sans KR', sans-serif;
   font-size: 14px;
   color: #000;
@@ -197,6 +198,7 @@ font-weight: 500;
 .lyrics-explain-box p {
   margin-bottom: 16px;
   word-break: keep-all;
+  font-weight: 500;
 }
 
 .lyrics-explain-box .keyword {
@@ -206,6 +208,54 @@ font-weight: 500;
   display: inline-block;
   margin-bottom: 4px;
 }
+.lyrics-container {
+    background-color:   #fff7da/* 배경색 */;
+    border-radius: 8px;
+    font-size: 14px;
+    line-height: 1.9;
+}
+  
+.lyrics-container p {
+  padding-left: 20px; /* 원하는 여백 크기로 조정 */
+}
+
+
+/* 오렌지색과 둥근 폰트 */
+.orange {
+    color: orange;
+    font-family: 'NanumSquare', sans-serif;
+    font-weight: 500;
+    padding: 16px 20px;
+}
+
+.grow1 {
+    font-size: 16px; /* '사' */
+}
+
+.grow2 {
+    font-size: 18px; /* '랑' */
+}
+
+.grow3 {
+    font-size: 20px; /* '은' */
+}
+
+.grow4 {
+    font-size: 22px; /* '자' */
+}
+
+.grow5 {
+    font-size: 24px; /* '라' */
+}
+
+.grow6 {
+    font-size: 26px; /* '나' */
+}
+
+.grow7 {
+    font-size: 28px; /* '요' */
+}
+
 .sketchbook {
   margin-top: 5px;
 }
@@ -305,6 +355,11 @@ font-weight: 500;
 
   .clicked {
     color: red;
+    details {
+  margin-bottom: 20px; /* 각 details 간 간격을 추가 */
+}
+
+
   }
 </style>
 
@@ -357,6 +412,7 @@ font-weight: 500;
       </div>
 
       <!-- 가사 해석 -->
+       
       <details>
         <summary>음악감상</summary>
         <div class="lyrics"><iframe width="560" height="315" src="https://www.youtube.com/embed/Ffos7OAZ0_0?si=_tuNk3w5km9WtlRH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -396,6 +452,41 @@ font-weight: 500;
             <p><span class="keyword">함께하다</span><br>같이 시간을 보내거나 같은 일을 하다.</p>
           </div>
         </details>
+        <details>
+            <summary>힘이 되는 문장들</summary>
+            <div class="lyrics-container">
+              <P> 당근송에서 나온 단어들로 배열한 힘이 되는 문장들이에요.</P>
+                <p> 1. <span class="keyword orange">“당근이지!”</span><br>
+                    귀여운 말장난이자 확신의 표현. <br>
+                </p>
+                <p> 2. <span class="keyword grow1">사</span><span class="keyword grow2">랑</span><span class="keyword grow3">은</span><span class="keyword grow4">자</span><span class="keyword grow5">라</span><span class="keyword grow6">나</span><span class="keyword grow7">요</span>
+                    <br>‘사’→‘랑’→‘은’→‘자’→‘라’→‘나’→‘요’ 
+                <p>
+                  3.<span style="font-style:italic; opacity:0.5;">"괜찮지 않아도</span> <strong style="font-weight:700;">괜찮아</strong>”
+                </p><p>
+                    4.<span class="keyword wave">“같이 웃을 수 있어서 좋아”</span><br> <br>
+                </p>
+            </div>
+        </details>
+        <details>
+          <summary>당근의 효능</summary>
+          <div class="lyrics-container">
+            <p><strong>1. 눈에 좋아요</strong><br>
+              당근에는 <strong>비타민 A</strong>가 많아서 눈 건강에 좋아요. 비타민 A는 눈을 밝고 건강하게 해주는데, 그래서 당근을 먹으면 더 잘 볼 수 있게 돼요.</p>
+              
+              <p><strong>2. 면역력을 키워줘요</strong><br>
+              당근에는 <strong>베타카로틴</strong>이라는 성분이 있어요. 이 성분은 몸의 방어력을 키워줘서 병에 잘 안 걸리게 도와줘요.</p>
+              
+              <p><strong>3. 피부를 깨끗하게 해요</strong><br>
+              당근을 먹으면 피부도 더 좋아져요. 비타민 A가 피부 재생을 돕고, 피부가 건강하고 빛나게 만들어줘요.</p>
+              
+              <p><strong>4. 배가 편안해져요</strong><br>
+              당근에 있는 <strong>식이섬유</strong>는 배가 편안하게 만들어줘요. 변비도 예방할 수 있고, 장 건강을 지켜줘요.</p>
+              
+              <p><strong>5. 심장도 보호해요</strong><br>
+              당근에 있는 <strong>칼륨</strong>이 심장을 도와줘요. 그래서 혈압을 잘 조절하고, 심장이 건강하게 유지될 수 있게 해줘요.</p>
+          </div>
+      </details>
       <details>
         <summary>스케치북</summary>
             <div class="lyrics-explain-box">
