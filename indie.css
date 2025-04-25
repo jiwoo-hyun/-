@@ -309,5 +309,35 @@ button:hover {
     transform: translateY(0);
   }
 
+.album-explainer .container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  line-height: 1.8;
+  font-size: 1rem;
+  color: #222;
+}
+
+.album-explainer .container h1, 
+.album-explainer .container h2 {
+  color: #111;
+}
+
+.album-explainer .container h1 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.album-explainer .container h2 {
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.album-explainer .container p {
+  margin-bottom: 1.2rem;
+}
+
+
 
 </style>    
