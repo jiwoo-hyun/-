@@ -89,21 +89,21 @@
 
     .lyrics-left, .lyrics-right {
         width: 50%;
-        font-size: 13px;
+        font-size: 14px;
         line-height: 1.65;
         white-space: pre-wrap;
     }
 
     .lyrics-right {
     width: 50%;
-    font-size: 13px;
+    font-size: 14px;
     line-height: 1.65;
     white-space: pre-wrap;
     margin-left: -40px; /* 왼쪽으로 확 밀기 */
     }
 
     .lyrics {
-      font-size: 13px;
+      font-size: 14px;
       line-height: 1.65;
       padding: 10px 0 10px 40px;
     }
